@@ -1,88 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book-Style Website</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
-<div class="credit">developed with <span class="heart">❤</span> by VestiaAoi</div>
-  <div class="book-container">
-    <!-- <div class="binding"></div> -->
-    <div class="book">
-      <!-- Cover -->
-      <div class="page cover active" id="page-0">
-        <h1>ShowD</h1>
-        <p>Designed And Created By : ShowD</p>
-        <!-- <img src="assets/img/1.png" alt="" class="cover-book-image"> -->
-      </div>
-      
-      <!-- Page 1 -->
-      <div class="page even-page page-1" id="page-1">
-        <!-- <div class="page-content">
-          <h2 class="book-title">Table of Contents</h2>
-          <ul>
-            <li>Chapter 1: Introduction</li>
-            <li>Chapter 2: The Journey Begins</li>
-            <li>Chapter 3: Discovery</li>
-            <li>Chapter 4: Resolution</li>
-          </ul>
-          <div class="page-number">i</div>
-        </div> -->
-      </div>
-      
-      <!-- Page 2 -->
-      <div class="page odd-page page-2" id="page-2">
-        <!-- <div class="page-content">
-          <h2 class="chapter-title">Chapter 1: Introduction</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <div class="page-number">1</div>
-        </div> -->
-      </div>
-      
-      <!-- Page 3 -->
-      <div class="page even-page page-3" id="page-3">
-        <!-- <div class="page-content">
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-          <div class="page-number">2</div>
-        </div> -->
-      </div>
-      
-      <!-- Page 4 -->
-      <div class="page odd-page page-4" id="page-4">
-        <!-- <div class="page-content">
-          <h2 class="chapter-title">Chapter 2: The Journey Begins</h2>
-          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-          <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-          <div class="page-number">3</div>
-        </div> -->
-      </div>
-      
-      <!-- Page 5 -->
-      <div class="page even-page page-5" id="page-5">
-        <div class="page-content">
-          <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-          <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.</p>
-          <div class="page-number">4</div>
-        </div>
-      </div>
-      
-      <!-- Back Cover -->
-      <div class="page cover" id="page-6">
-        <h2>The End</h2>
-        <p>Thank you for reading</p>
-      </div>
-    </div>
-    
-    <div class="nav-buttons">
-      <button class="nav-button prev" onclick="prevPage()">←</button>
-      <button class="nav-button next" onclick="nextPage()">→</button>
-    </div>
-  </div>
+<html lang="en" class="scroll-smooth">
 
-  <script src="index.js"></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VTuber Debut</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .flip-card {
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner,
+        .flip-card:focus-within .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .star-bg {
+            background-image: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%),
+                linear-gradient(135deg, #fce3f3, #e0e7ff, #fcdcf4);
+            background-size: cover;
+        }
+
+        .btn-glow {
+            background: linear-gradient(to right, #f9a8d4, #c084fc);
+            color: white;
+            border-radius: 9999px;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-glow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 min-h-screen font-sans text-gray-800">
+
+    <!-- Welcome Section -->
+    <section class="text-center py-20 px-4">
+        <h1 class="text-4xl sm:text-6xl font-bold mb-4 animate-bounce text-purple-600">✨ Welcome to My VTuber Debut ✨
+        </h1>
+        <p class="text-lg sm:text-xl max-w-xl mx-auto text-pink-600">
+            Aku adalah Sho, malaikat cinta yang tanpa sengaja terjebak di bumi akibat ramalan yang menjadi kenyataan. Awalnya aku
+            ditugaskan untuk menjodohkan manusia, namun setelah bertemu malaikat dari neraka di perbatasan surga, takdirku berubah.
+            Kini aku hidup di bumi, mencari jawaban atas ramalan itu, terjebak di dunia manusia hingga waktu yang tidak diketahui.
+            🌌
+        </p>
+
+        <!-- Lorebook Button -->
+        <div class="mt-8">
+            <a href="/book.html" class="btn-glow px-6 py-3 text-lg font-semibold inline-block hover:animate-pulse">📖
+                Read My Lorebook</a>
+        </div>
+    </section>
+
+    <!-- Flip Card Section -->
+    <section class="py-16 px-4 star-bg">
+        <h2 class="text-3xl font-bold text-center text-purple-700 mb-10">💡 About Me</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Card 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner relative w-full h-64 rounded-xl shadow-2xl">
+                    <div
+                        class="flip-card-front absolute inset-0 p-6 flex items-center justify-center bg-pink-300 rounded-xl">
+                        <p class="text-xl font-semibold text-white">✨ Character Traits</p>
+                    </div>
+                    <div
+                        class="flip-card-back absolute inset-0 p-6 flex items-center justify-center bg-pink-500 text-white rounded-xl">
+                        <ul>
+                            <li>👼 Malaikat cinta</li>
+                            <li>😳 Ceroboh tapi manis</li>
+                            <li>💘 Terjebak di bumi tapi tetap ceria</li>
+                            <li>🎶 Suka menyanyi lagu galau</li>
+                            <li>🌌 Penuh misteri dari dunia lain</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner relative w-full h-64 rounded-xl shadow-2xl">
+                    <div class="flip-card-front absolute inset-0 overflow-hidden rounded-xl">
+                        <img src="assets/img/sho-2.png" alt="VTuber"
+                            class="w-full h-full object-cover rounded-xl hover:scale-105 transition duration-300" />
+                    </div>
+                    <div
+                        class="flip-card-back absolute inset-0 bg-blue-500 text-white rounded-xl p-6 flex items-center justify-center">
+                        <p class="text-center">💖 This is me — your Love Angel, here to fill your world with warmth and wonder!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner relative w-full h-64 rounded-xl shadow-2xl">
+                    <div
+                        class="flip-card-front absolute inset-0 p-6 flex items-center justify-center bg-purple-300 rounded-xl">
+                        <p class="text-xl font-semibold text-white">🪐 Fun Facts</p>
+                    </div>
+                    <div
+                        class="flip-card-back absolute inset-0 p-6 flex items-center justify-center bg-purple-500 text-white rounded-xl">
+                        <ul>
+                            <li>🔄 Bingung antara manusia dan malaikat.
+                            “Siapa aku sebenarnya?” adalah pertanyaan tiap pagi Sho 🌥️</li>
+                            <li>⏳ Terjebak di bumi dalam waktu yang tidak diketahui.
+                            Sampai cinta sejati ditemukan... mungkin?</li>
+                            <li>😵 Pernah bicara sendiri karena pikir ada suara dari langit.
+                            Ternyata... suara dari hatinya sendiri 💔</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="lorebook" class="py-16 px-4 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100">
+        <h2 class="text-3xl font-bold text-center text-pink-600 mb-10">🎨 Gallery</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div class="overflow-hidden rounded-xl shadow-lg w-full h-64 bg-pink-200 flex items-center justify-center">
+                <img src="assets/img/mita-sho.png" alt="Artwork 1"
+                    class="w-full h-full object-contain transition-transform duration-500" />
+            </div>
+            <div class="overflow-hidden rounded-xl shadow-lg w-full h-64 bg-pink-200 flex items-center justify-center">
+                <img src="assets/img/sho-1.png" alt="Artwork 2"
+                    class="w-full h-full object-contain transition-transform duration-500" style="margin-top: 60px;" />
+            </div>
+            <div class="overflow-hidden rounded-xl shadow-lg w-full h-64 bg-pink-200 flex items-center justify-center">
+                <img src="assets/img/sho-2.png" alt="Artwork 3"
+                    class="w-full h-full object-contain transition-transform duration-500" style="margin-top: 60px;" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-purple-700 bg-white">
+        © 2025 ShowD. Shine bright 🌟
+    </footer>
 </body>
+
 </html>
